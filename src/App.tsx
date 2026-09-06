@@ -26,6 +26,19 @@ export default function App() {
     }
   };
 
+  // Handle hash navigation on page load
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.replace('#', '');
+      const el = document.getElementById(hash);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 200);
+      }
+    }
+  }, []);
+
   // ScrollSpy to update active nav section on scroll
   useEffect(() => {
     const handleScroll = () => {
@@ -61,8 +74,6 @@ export default function App() {
       <Navbar
         activeSection={activeSection}
         onNavigate={handleNavigate}
-        isMuted={isAudioMuted}
-        onToggleMute={() => setIsAudioMuted(!isAudioMuted)}
       />
 
       {/* Main Content Sections */}

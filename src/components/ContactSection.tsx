@@ -140,7 +140,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="relative py-28 px-4 sm:px-6 max-w-5xl mx-auto z-10">
+    <section id="contact" aria-label="Contact Ultra Motions" className="relative py-28 px-4 sm:px-6 max-w-5xl mx-auto z-10">
       {/* Ambient background glow matching #000c0d */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-r from-[#000c0d]/60 via-[#000c0d]/30 to-transparent rounded-full blur-[140px] pointer-events-none" />
 
@@ -151,7 +151,7 @@ export const ContactSection: React.FC = () => {
           <span>Start a Project</span>
         </div>
         <h2 className="font-syne font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white max-w-3xl mx-auto leading-tight">
-          Create ideas to motion
+          Create ideas to motion <span className="sr-only">— Contact Ultra Motions</span>
         </h2>
         <p className="text-slate-400 text-base md:text-lg font-normal max-w-xl mx-auto leading-relaxed">
           Tell us about your project vision and we'll craft a bespoke motion graphics production pipeline for you.

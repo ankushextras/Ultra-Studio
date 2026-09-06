@@ -1,6 +1,6 @@
 {
-  "name": "ULTRA MOTION — Motion Graphics & Video Production Studio",
-  "description": "High-end motion graphics and video editing studio for SaaS and tech startups.",
+  "name": "Ultra Motions — Video Editing & Motion Graphics",
+  "description": "Ultra Motions creates high-quality video editing, motion graphics, SaaS animations, and visual content for creators, brands, and businesses.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

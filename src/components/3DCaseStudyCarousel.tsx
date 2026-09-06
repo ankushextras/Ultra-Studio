@@ -243,8 +243,22 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
     <section
       ref={containerRef}
       id="case-studies"
+      aria-label="Selected Work & Case Studies"
       className="relative py-16 md:py-24 overflow-hidden bg-transparent z-10 select-none w-full"
     >
+      {/* Sitelink Navigation Anchors */}
+      <div id="work" className="sr-only" tabIndex={-1} />
+      <div id="motion-graphics" className="sr-only" tabIndex={-1} />
+      <div id="video-editing" className="sr-only" tabIndex={-1} />
+      <div id="saas" className="sr-only" tabIndex={-1} />
+
+      {/* Semantic Headings for Search Engines & Assistive Tech */}
+      <div className="sr-only">
+        <h2>Video Editing</h2>
+        <h2>Motion Graphics</h2>
+        <h2>SaaS Animation</h2>
+      </div>
+
       {/* Seamless Gaussian Blur & Atmospheric Blend Layer (No hard solid edges) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Deep ambient gaussian glow matching canvas background */}
@@ -256,15 +270,27 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
       {/* Header — Top Left Corner Garamond */}
       <div className="w-full max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16 relative z-20 text-left pt-2 pb-6 flex items-center justify-between">
         <h2 className="font-garamond text-4xl sm:text-5xl lg:text-6xl text-white font-normal italic tracking-tight">
-          Our Work
+          Selected Work
         </h2>
 
         {/* Minimal Subtle Scroll Step Dots Indicator */}
-        <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
-          {reelProjects.map((_, i) => (
-            <div
+        <div
+          role="tablist"
+          aria-label="Case Study Selection Dots"
+          className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md"
+        >
+          {reelProjects.map((p, i) => (
+            <button
               key={i}
-              className={`h-1.5 rounded-full transition-all duration-200 ${
+              type="button"
+              role="tab"
+              aria-selected={activeIndex === i}
+              aria-label={`Jump to project ${i + 1}: ${p.title}`}
+              onClick={() => {
+                setActiveIndex(i);
+                scrollCountRef.current = i * SCROLLS_PER_STEP;
+              }}
+              className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
                 activeIndex === i ? 'w-7 bg-white' : 'w-1.5 bg-white/20'
               }`}
             />
@@ -348,6 +374,12 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
                   : 'border-white/10 hover:border-white/30 shadow-xl'
               }`}
             >
+              {/* Semantic Project Metadata for Search Indexing */}
+              <div className="sr-only">
+                <h3>{project.title}</h3>
+                <p>{project.category} — {project.shortDescription}</p>
+              </div>
+
               {/* Clean Video / Embed Element */}
               {project.embedUrl ? (
                 <div
@@ -356,7 +388,7 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
                 >
                   <iframe
                     loading="lazy"
-                    title={project.title || 'Gumlet video player'}
+                    title={`${project.title} — ${project.category} by Ultra Motions`}
                     src={getCarouselEmbedUrl(project.embedUrl)}
                     style={{
                       border: 'none',
@@ -373,6 +405,7 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
                   <div
                     onContextMenu={(e) => e.preventDefault()}
                     className="absolute inset-0 z-20 bg-transparent cursor-pointer select-none"
+                    aria-label={`Select ${project.title} — ${project.category}`}
                   />
                 </div>
               ) : (
@@ -396,6 +429,7 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
                     e.stopPropagation();
                     onSelectProject(project);
                   }}
+                  aria-label={`View Case Study Details for ${project.title}`}
                   className="absolute top-3 right-3 z-30 px-3 py-1 rounded-full text-xs font-medium bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/20 backdrop-blur-md transition-all flex items-center gap-1.5 shadow-lg cursor-pointer"
                   title="View Case Study Details"
                 >

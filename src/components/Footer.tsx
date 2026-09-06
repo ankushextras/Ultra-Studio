@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               onError={(e) => {
                 (e.currentTarget as HTMLImageElement).src = 'https://i.ibb.co/tT3Lcbqv/ANKUSH-MOTION-LOGO.png';
               }}
-              alt="ULTRA MOTION Logo"
+              alt="Ultra Motions — Video Editing & Motion Graphics Studio Logo"
               className="w-10 h-10 rounded-full object-cover filter drop-shadow shrink-0"
               referrerPolicy="no-referrer"
             />
@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             rel="noreferrer"
             className="p-2.5 rounded-full glass-pill text-slate-300 hover:text-white hover:bg-white/15 border border-white/15 transition-colors"
             title="Instagram"
-            aria-label="Instagram"
+            aria-label="Visit Ultra Motions on Instagram"
           >
             <Instagram className="w-4 h-4" />
           </a>
@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             rel="noreferrer"
             className="p-2.5 rounded-full glass-pill text-slate-300 hover:text-white hover:bg-white/15 border border-white/15 transition-colors"
             title="Discord"
-            aria-label="Discord"
+            aria-label="Join Ultra Motions Discord Community"
           >
             <MessageSquare className="w-4 h-4" />
           </a>
@@ -63,7 +63,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             rel="noreferrer"
             className="p-2.5 rounded-full glass-pill text-slate-300 hover:text-white hover:bg-white/15 border border-white/15 transition-colors"
             title="Twitter"
-            aria-label="Twitter"
+            aria-label="Follow Ultra Motions on Twitter"
           >
             <Twitter className="w-4 h-4" />
           </a>
@@ -72,6 +72,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             onClick={scrollToTop}
             className="p-2.5 rounded-full bg-white/15 hover:bg-white/25 text-white transition-all border border-white/30 cursor-pointer shadow-lg"
             title="Back to Top"
+            aria-label="Scroll back to top of page"
           >
             <ArrowUp className="w-4 h-4" />
           </button>

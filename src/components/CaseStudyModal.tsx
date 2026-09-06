@@ -99,7 +99,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                 <div style={{ position: 'relative', aspectRatio: '16/9' }} className="w-full h-full">
                   <iframe
                     loading="lazy"
-                    title={project.title || 'Gumlet video player'}
+                    title={`${project.title} — ${project.category} Video Player by Ultra Motions`}
                     src={`${project.embedUrl}?autoplay=true&loop=true`}
                     style={{
                       border: 'none',
@@ -132,9 +132,9 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
             {/* Title & Overview */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
               <div className="lg:col-span-2 space-y-6">
-                <h1 className="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white">
+                <h2 className="font-syne font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white">
                   {project.title}
-                </h1>
+                </h2>
                 <p className="text-slate-300 text-base md:text-lg leading-relaxed font-light">
                   {project.fullDescription}
                 </p>

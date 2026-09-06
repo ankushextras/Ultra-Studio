@@ -15,11 +15,14 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ items }) => {
   };
 
   return (
-    <section id="faq" className="relative py-28 px-6 max-w-5xl mx-auto z-10">
+    <section id="faq" aria-label="Frequently Asked Questions & About Ultra Motions" className="relative py-28 px-6 max-w-5xl mx-auto z-10">
+      {/* Sitelink anchor for About */}
+      <div id="about" className="sr-only" tabIndex={-1} />
+
       {/* Garamond Top Left Title */}
       <div className="text-left mb-10">
         <h2 className="font-garamond text-4xl sm:text-5xl lg:text-6xl text-white font-normal italic tracking-tight">
-          FAQ
+          FAQ <span className="sr-only">— About Ultra Motions</span>
         </h2>
       </div>
 
@@ -41,6 +44,8 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ items }) => {
               {/* Question Header (No tag in front) */}
               <button
                 onClick={() => toggleFAQ(item.id)}
+                aria-expanded={isOpen}
+                aria-controls={`faq-answer-${item.id}`}
                 className="w-full p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
               >
                 <span className="font-syne font-semibold text-lg sm:text-xl text-white">
@@ -62,6 +67,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ items }) => {
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div
+                    id={`faq-answer-${item.id}`}
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}

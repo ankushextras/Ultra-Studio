@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SectionId } from '../types';
-import { Play, Volume2, VolumeX, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   activeSection: SectionId;
   onNavigate: (sectionId: SectionId) => void;
-  isMuted: boolean;
-  onToggleMute: () => void;
+  isMuted?: boolean;
+  onToggleMute?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeSection,
   onNavigate,
-  isMuted,
-  onToggleMute,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -84,6 +82,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               {/* Logo / Brand Mark */}
               <button
                 onClick={() => onNavigate('home')}
+                aria-label="Ultra Motions Home"
                 className="relative flex items-center gap-3 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors group cursor-pointer"
               >
                 <img
@@ -91,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).src = 'https://i.ibb.co/tT3Lcbqv/ANKUSH-MOTION-LOGO.png';
                   }}
-                  alt="ULTRA MOTION Icon"
+                  alt="Ultra Motions — Video Editing & Motion Graphics Studio Logo"
                   className="w-10 h-10 rounded-full object-cover filter drop-shadow group-hover:scale-105 transition-transform shrink-0"
                   referrerPolicy="no-referrer"
                 />
@@ -101,13 +100,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
 
               {/* Desktop Nav Items */}
-              <nav className="hidden md:flex items-center gap-1.5">
+              <nav aria-label="Primary Navigation" className="hidden md:flex items-center gap-1.5">
                 {navItems.map((item) => {
                   const isActive = activeSection === item.id;
                   return (
                     <button
                       key={item.id}
                       onClick={() => onNavigate(item.id)}
+                      aria-label={item.label === 'WORK' ? 'View Selected Work' : item.label}
                       className={`relative px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all duration-300 rounded-full cursor-pointer ${
                         isActive
                           ? 'text-white'
@@ -129,22 +129,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
               {/* Controls & Call to Action */}
               <div className="flex items-center gap-2">
-                {/* Audio Mute Toggle */}
-                <button
-                  onClick={onToggleMute}
-                  title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-                  className="p-2 rounded-full text-slate-300 hover:text-white hover:bg-white/15 transition-all border border-white/10 cursor-pointer"
-                >
-                  {isMuted ? (
-                    <VolumeX className="w-4 h-4 text-slate-400" />
-                  ) : (
-                    <Volume2 className="w-4 h-4 text-white animate-pulse" />
-                  )}
-                </button>
-
                 {/* Glass CTA button */}
                 <button
                   onClick={() => onNavigate('contact')}
+                  aria-label="Start a Project with Ultra Motions"
                   className="relative group hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wider uppercase text-white bg-white/10 hover:bg-white/20 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.08)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)] border border-white/20 hover:border-white/40 cursor-pointer"
                 >
                   <span>Start Project</span>
@@ -154,6 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {/* Mobile Menu Toggle Button */}
                 <button
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
                   className="md:hidden p-2 rounded-full text-white bg-white/10 border border-white/15"
                 >
                   {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -173,28 +162,32 @@ export const Navbar: React.FC<NavbarProps> = ({
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             className="fixed top-20 left-4 right-4 z-40 p-6 rounded-3xl glass-card border border-white/20 backdrop-blur-3xl md:hidden flex flex-col gap-4 shadow-2xl"
           >
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => {
-                  onNavigate(item.id);
-                  setMobileMenuOpen(false);
-                }}
-                className={`py-3 px-4 rounded-xl text-left font-syne text-lg tracking-wide transition-all ${
-                  activeSection === item.id
-                    ? 'bg-blue-600/30 text-white font-bold border border-blue-500/40'
-                    : 'text-slate-300 hover:bg-white/5'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
+            <nav aria-label="Mobile Navigation" className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    onNavigate(item.id);
+                    setMobileMenuOpen(false);
+                  }}
+                  aria-label={item.label === 'WORK' ? 'View Selected Work' : item.label}
+                  className={`py-3 px-4 rounded-xl text-left font-syne text-lg tracking-wide transition-all ${
+                    activeSection === item.id
+                      ? 'bg-blue-600/30 text-white font-bold border border-blue-500/40'
+                      : 'text-slate-300 hover:bg-white/5'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
             <button
               onClick={() => {
                 onNavigate('contact');
                 setMobileMenuOpen(false);
               }}
-              className="mt-2 py-3 px-4 rounded-xl text-center font-bold text-sm uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg"
+              aria-label="Start a Project with Ultra Motions"
+              className="mt-2 py-3 px-4 rounded-xl text-center font-bold text-sm uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg cursor-pointer"
             >
               Start a Project
             </button>
