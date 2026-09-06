@@ -22,8 +22,8 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
   // 6 case studies for the interactive reel
   const reelProjects = projects.slice(0, 6);
   const total = reelProjects.length; // 6 videos (index 0 to 5)
-  const SCROLLS_PER_STEP = 6;
-  const TOTAL_SCROLLS = total * SCROLLS_PER_STEP; // 6 * 6 = 36 scrolls total before scrolling to FAQ
+  const SCROLLS_PER_STEP = 3;
+  const TOTAL_SCROLLS = total * SCROLLS_PER_STEP; // 6 * 3 = 18 scrolls total before scrolling to FAQ
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -169,7 +169,7 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
 
       if (deltaY > 0 && scrollCountRef.current < TOTAL_SCROLLS) {
         if (e.cancelable) e.preventDefault();
-        scrollCountRef.current = Math.min(TOTAL_SCROLLS, scrollCountRef.current + 2);
+        scrollCountRef.current = Math.min(TOTAL_SCROLLS, scrollCountRef.current + 1);
         const currentCount = scrollCountRef.current;
         const newIdx = Math.min(total - 1, Math.floor(currentCount / SCROLLS_PER_STEP));
         setActiveIndex(newIdx);
@@ -183,7 +183,7 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
         }
       } else if (deltaY < 0 && scrollCountRef.current > 0) {
         if (e.cancelable) e.preventDefault();
-        scrollCountRef.current = Math.max(0, scrollCountRef.current - 2);
+        scrollCountRef.current = Math.max(0, scrollCountRef.current - 1);
         const currentCount = scrollCountRef.current;
         const newIdx = Math.min(total - 1, Math.floor(currentCount / SCROLLS_PER_STEP));
         setActiveIndex(newIdx);

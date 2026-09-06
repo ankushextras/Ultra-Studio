@@ -6,7 +6,8 @@ import {
   Send, 
   CheckCircle, 
   Sparkles, 
-  Check
+  Check,
+  AlertCircle
 } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
@@ -29,6 +30,7 @@ export const ContactSection: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const videoTypeOptions = [
     { id: 'SaaS Explainer', label: 'SaaS Explainer' },
@@ -64,22 +66,56 @@ export const ContactSection: React.FC = () => {
     { value: '5', label: '5+ Weeks' },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const payload = {
+      name: formData.name,
+      company: formData.company,
+      email: formData.email,
+      website: formData.website || 'N/A',
+      country: formData.country,
+      whatsapp: formData.whatsapp || 'N/A',
+      socials: formData.socials || 'N/A',
+      videoType: formData.videoType,
+      hasScript: formData.hasScript,
+      hasStoryboard: formData.hasStoryboard,
+      videoLength: formData.videoLength,
+      deadlineWeeks: `${formData.deadlineWeeks} ${formData.deadlineWeeks === '1' ? 'Week' : 'Weeks'}`,
+      budget: formData.budget ? `$${formData.budget} USD` : 'N/A',
+      moreAboutProject: formData.moreAboutProject,
+      submittedAt: new Date().toISOString(),
+    };
+
+    try {
+      const response = await fetch('https://formbold.com/s/9EawK', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Submission returned status ${response.status}`);
+      }
+
       setIsSubmitted(true);
-
-      // Trigger Confetti Celebration Effect
       confetti({
         particleCount: 90,
         spread: 80,
         origin: { y: 0.6 },
         colors: ['#ffffff', '#e2e8f0', '#94a3b8', '#38bdf8', '#00f2fe'],
       });
-    }, 1000);
+    } catch (err: any) {
+      console.error('FormBold submission error:', err);
+      setSubmitError('Unable to deliver project brief to FormBold right now. Please verify your connection and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const resetForm = () => {
@@ -100,6 +136,7 @@ export const ContactSection: React.FC = () => {
       moreAboutProject: '',
     });
     setIsSubmitted(false);
+    setSubmitError(null);
   };
 
   return (
@@ -151,7 +188,12 @@ export const ContactSection: React.FC = () => {
             </button>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-10 relative z-10 font-outfit">
+          <form
+            action="https://formbold.com/s/9EawK"
+            method="POST"
+            onSubmit={handleSubmit}
+            className="space-y-10 relative z-10 font-outfit"
+          >
             
             {/* SECTION 1: Client & Studio Details */}
             <div className="space-y-6">
@@ -172,6 +214,7 @@ export const ContactSection: React.FC = () => {
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required
                     placeholder="e.g. Elena Rostova"
                     value={formData.name}
@@ -186,6 +229,7 @@ export const ContactSection: React.FC = () => {
                   </label>
                   <input
                     type="text"
+                    name="company"
                     required
                     placeholder="e.g. Acme Corp / Studio"
                     value={formData.company}
@@ -203,6 +247,7 @@ export const ContactSection: React.FC = () => {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
                     placeholder="elena@company.com"
                     value={formData.email}
@@ -217,6 +262,7 @@ export const ContactSection: React.FC = () => {
                   </label>
                   <input
                     type="text"
+                    name="website"
                     placeholder="e.g. company.com"
                     value={formData.website}
                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}
@@ -234,6 +280,7 @@ export const ContactSection: React.FC = () => {
                   </label>
                   <input
                     type="text"
+                    name="country"
                     required
                     placeholder="e.g. United States"
                     value={formData.country}
@@ -254,6 +301,7 @@ export const ContactSection: React.FC = () => {
                   </div>
                   <input
                     type="tel"
+                    name="whatsapp"
                     placeholder="+1 000 000"
                     value={formData.whatsapp}
                     onChange={(e) => {
@@ -272,6 +320,7 @@ export const ContactSection: React.FC = () => {
                   </label>
                   <input
                     type="text"
+                    name="socials"
                     placeholder="@handle"
                     value={formData.socials}
                     onChange={(e) => setFormData({ ...formData, socials: e.target.value })}
@@ -473,6 +522,7 @@ export const ContactSection: React.FC = () => {
                   </div>
                   <input
                     type="text"
+                    name="budget"
                     required
                     inputMode="numeric"
                     placeholder="2500"
@@ -493,6 +543,7 @@ export const ContactSection: React.FC = () => {
                   More About Project <span className="text-blue-400">*</span>
                 </label>
                 <textarea
+                  name="moreAboutProject"
                   required
                   rows={4}
                   placeholder="Tell us about your project goals, references, target audience, core deliverables, or any links you would like to share..."
@@ -502,6 +553,14 @@ export const ContactSection: React.FC = () => {
                 />
               </div>
             </div>
+
+            {/* Error Message if FormBold dispatch encounters an issue */}
+            {submitError && (
+              <div className="p-4 rounded-xl bg-red-950/40 border border-red-500/30 flex items-center gap-3 text-red-200 text-xs sm:text-sm backdrop-blur-md">
+                <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
+                <p>{submitError}</p>
+              </div>
+            )}
 
             {/* Submit Button */}
             <motion.button

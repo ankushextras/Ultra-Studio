@@ -51,30 +51,6 @@ export const PROJECTS_DATA: Project[] = [
     ]
   },
   {
-    id: 'stripe-concept-saas',
-    title: 'Stripe Concept SaaS Video',
-    client: 'Stripe',
-    category: 'Fintech SaaS Motion Graphics',
-    shortDescription: 'Sleek kinetic typography and checkout flow animation illustrating frictionless global payments and developer infrastructure.',
-    fullDescription: 'A high-energy fintech motion graphics piece illustrating Stripe’s global payment infrastructure, one-click checkout flows, and automated developer APIs through rhythmic kinetic typography, smooth UI transitions, and crisp audio cues.',
-    year: '2026',
-    featured: true,
-    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-blue-glowing-digital-particles-41550-large.mp4',
-    embedUrl: 'https://play.gumlet.io/embed/6a9bc977800014611e26b7f8',
-    posterUrl: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80',
-    accentColor: '#60A5FA',
-    duration: '01:10',
-    services: ['Motion Graphics', 'Fintech Explainer', 'Kinetic Typography', 'Product Animation'],
-    softwareUsed: ['After Effects', 'Premiere Pro'],
-    results: [
-      { label: 'Checkout Adoption', value: '+74%' },
-      { label: 'Video Retention', value: '92%' }
-    ],
-    galleryImages: [
-      'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80'
-    ]
-  },
-  {
     id: 'juiceman-launch-saas',
     title: 'Juiceman Launch Video SaaS',
     client: 'Juiceman SaaS',
@@ -96,6 +72,30 @@ export const PROJECTS_DATA: Project[] = [
     ],
     galleryImages: [
       'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80'
+    ]
+  },
+  {
+    id: 'stripe-concept-saas',
+    title: 'Stripe Concept SaaS Video',
+    client: 'Stripe',
+    category: 'Fintech SaaS Motion Graphics',
+    shortDescription: 'Sleek kinetic typography and checkout flow animation illustrating frictionless global payments and developer infrastructure.',
+    fullDescription: 'A high-energy fintech motion graphics piece illustrating Stripe’s global payment infrastructure, one-click checkout flows, and automated developer APIs through rhythmic kinetic typography, smooth UI transitions, and crisp audio cues.',
+    year: '2026',
+    featured: true,
+    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-blue-glowing-digital-particles-41550-large.mp4',
+    embedUrl: 'https://play.gumlet.io/embed/6a9bc977800014611e26b7f8',
+    posterUrl: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80',
+    accentColor: '#60A5FA',
+    duration: '01:10',
+    services: ['Motion Graphics', 'Fintech Explainer', 'Kinetic Typography', 'Product Animation'],
+    softwareUsed: ['After Effects', 'Premiere Pro'],
+    results: [
+      { label: 'Checkout Adoption', value: '+74%' },
+      { label: 'Video Retention', value: '92%' }
+    ],
+    galleryImages: [
+      'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80'
     ]
   },
   {
@@ -132,7 +132,7 @@ export const PROJECTS_DATA: Project[] = [
     year: '2026',
     featured: true,
     videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-futuristic-robotic-arm-moving-41554-large.mp4',
-    embedUrl: 'https://play.gumlet.io/embed/6a9bcf9b800014611e26d81a',
+    embedUrl: 'https://play.gumlet.io/embed/6a9d2625d9ae2eeb4b756ff6',
     posterUrl: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80',
     accentColor: '#6366F1',
     duration: '01:15',
