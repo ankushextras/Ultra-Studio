@@ -32,10 +32,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ items }) => {
             <motion.div
               key={item.id}
               initial={false}
-              className={`glass-card rounded-2xl border transition-all duration-300 overflow-hidden ${
+              className={`rounded-2xl transition-all duration-300 overflow-hidden backdrop-blur-2xl ${
                 isOpen
-                  ? 'border-white/30 shadow-[0_8px_32px_rgba(255,255,255,0.06)] bg-white/[0.06]'
-                  : 'border-white/10 hover:border-white/20'
+                  ? 'bg-[#000607]/95 border border-white/20 shadow-[0_16px_40px_rgba(0,0,0,0.95)]'
+                  : 'bg-[#000607]/75 hover:bg-[#000607]/90 border border-white/[0.07] hover:border-white/15 shadow-[0_6px_24px_rgba(0,0,0,0.65)]'
               }`}
             >
               {/* Question Header (No tag in front) */}
@@ -48,8 +48,10 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ items }) => {
                 </span>
 
                 <div
-                  className={`p-2 rounded-full bg-white/10 border border-white/10 transition-transform duration-300 ${
-                    isOpen ? 'rotate-180 bg-white/20 text-white' : 'text-slate-400'
+                  className={`p-2 rounded-full border transition-transform duration-300 ${
+                    isOpen
+                      ? 'rotate-180 bg-white/15 text-white border-white/20'
+                      : 'bg-white/[0.03] text-slate-400 border-white/[0.08]'
                   }`}
                 >
                   <ChevronDown className="w-5 h-5" />
@@ -65,7 +67,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({ items }) => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <div className="px-6 pb-6 pt-1 text-slate-300 text-sm md:text-base leading-relaxed font-light border-t border-white/5">
+                    <div className="px-6 pb-6 pt-1 text-slate-300 text-sm md:text-base leading-relaxed font-light border-t border-white/[0.06]">
                       {item.answer}
                     </div>
                   </motion.div>

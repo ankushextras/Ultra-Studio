@@ -43,7 +43,7 @@ export const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="relative py-28 px-4 sm:px-6 max-w-5xl mx-auto z-10">
       {/* Ambient background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-blue-600/10 via-indigo-500/10 to-violet-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-[#000c0d]/60 via-[#000c0d]/30 to-transparent rounded-full blur-[140px] pointer-events-none" />
 
       {/* Large Centered Heading */}
       <div className="text-center mb-14 space-y-4 relative z-10">
@@ -55,7 +55,7 @@ export const ContactSection: React.FC = () => {
           Create ideas to motion
         </h2>
         <p className="text-slate-400 text-base md:text-lg font-normal max-w-xl mx-auto leading-relaxed">
-          Tell us about your project vision and we'll craft a bespoke 3D production pipeline for you.
+          Tell us about your project vision and we'll craft a bespoke motion graphics production pipeline for you.
         </p>
       </div>
 
@@ -66,7 +66,7 @@ export const ContactSection: React.FC = () => {
         
         {/* Soft Ambient Inner Corner Glow */}
         <div className="absolute -top-24 -right-24 w-60 h-60 bg-white/[0.04] rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-60 h-60 bg-blue-500/[0.03] rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-60 h-60 bg-[#000c0d]/50 rounded-full blur-3xl pointer-events-none" />
 
         {isSubmitted ? (
           <motion.div

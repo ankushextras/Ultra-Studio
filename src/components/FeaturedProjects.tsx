@@ -71,7 +71,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({
                 {/* Top Badge */}
                 <div className="absolute top-6 left-6 flex items-center gap-2">
                   <span className="px-3 py-1 rounded-full glass-pill text-xs font-semibold tracking-wider text-white border border-white/20">
-                    {project.client}
+                    {project.category}
                   </span>
                   <span className="px-3 py-1 rounded-full bg-blue-600/80 backdrop-blur-md text-xs font-semibold tracking-wider text-white border border-blue-400/40">
                     {project.year}

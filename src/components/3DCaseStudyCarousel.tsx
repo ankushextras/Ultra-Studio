@@ -1,21 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Project } from '../types';
+import { ArrowUpRight } from 'lucide-react';
 
 interface CaseStudyCarouselProps {
   projects: Project[];
   onSelectProject: (project: Project) => void;
 }
 
+// Format Gumlet embed URL for seamless, muted background carousel loop with hidden seek bar and controls
+const getCarouselEmbedUrl = (rawUrl: string): string => {
+  if (!rawUrl) return '';
+  const separator = rawUrl.includes('?') ? '&' : '?';
+  return `${rawUrl}${separator}autoplay=true&loop=true&muted=true&background=true&disable_player_controls=true&disable_seek_bar=true&controls=false`;
+};
+
 export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
   projects,
   onSelectProject,
 }) => {
-  // Exactly 5 case studies for the interactive reel
-  const reelProjects = projects.slice(0, 5);
-  const total = reelProjects.length; // 5 videos (index 0 to 4)
+  // 6 case studies for the interactive reel
+  const reelProjects = projects.slice(0, 6);
+  const total = reelProjects.length; // 6 videos (index 0 to 5)
   const SCROLLS_PER_STEP = 6;
-  const TOTAL_SCROLLS = (total) * SCROLLS_PER_STEP; // 5 * 6 = 30 scrolls total before scrolling to FAQ
+  const TOTAL_SCROLLS = total * SCROLLS_PER_STEP; // 6 * 6 = 36 scrolls total before scrolling to FAQ
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -240,7 +248,7 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
       {/* Seamless Gaussian Blur & Atmospheric Blend Layer (No hard solid edges) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Deep ambient gaussian glow matching canvas background */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110vw] max-w-[1600px] h-[750px] bg-gradient-to-r from-blue-900/10 via-indigo-600/10 to-violet-900/10 rounded-full blur-[160px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110vw] max-w-[1600px] h-[750px] bg-gradient-to-r from-[#000c0d]/50 via-[#000c0d]/30 to-transparent rounded-full blur-[160px]" />
         {/* Gaussian-feathered soft edge masks */}
         <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-transparent via-transparent to-transparent backdrop-blur-[2px]" />
       </div>
@@ -334,23 +342,67 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',
               }}
-              className={`absolute w-[290px] sm:w-[440px] md:w-[560px] lg:w-[680px] xl:w-[740px] aspect-[16/10] rounded-xl overflow-hidden glass-card cursor-pointer border ${
+              className={`absolute w-[290px] sm:w-[440px] md:w-[560px] lg:w-[680px] xl:w-[740px] aspect-video rounded-xl overflow-hidden glass-card cursor-pointer border ${
                 isActive
                   ? 'border-white/50 shadow-[0_25px_70px_rgba(255,255,255,0.18)] ring-1 ring-white/40'
                   : 'border-white/10 hover:border-white/30 shadow-xl'
               }`}
             >
-              {/* Clean Video Element - Full size, original aspect ratio, reduced rounded corners */}
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster={project.posterUrl}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-102"
-              >
-                <source src={project.videoUrl} type="video/mp4" />
-              </video>
+              {/* Clean Video / Embed Element */}
+              {project.embedUrl ? (
+                <div
+                  style={{ position: 'relative', aspectRatio: '16/9' }}
+                  className="w-full h-full bg-black overflow-hidden"
+                >
+                  <iframe
+                    loading="lazy"
+                    title={project.title || 'Gumlet video player'}
+                    src={getCarouselEmbedUrl(project.embedUrl)}
+                    style={{
+                      border: 'none',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    referrerPolicy="origin"
+                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen; clipboard-write;"
+                  />
+                  {/* Invisible overlay captures mouse interactions so drag and click behavior on the arch carousel remain perfectly smooth */}
+                  <div
+                    onContextMenu={(e) => e.preventDefault()}
+                    className="absolute inset-0 z-20 bg-transparent cursor-pointer select-none"
+                  />
+                </div>
+              ) : (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  onContextMenu={(e) => e.preventDefault()}
+                  poster={project.posterUrl}
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-102 pointer-events-none select-none"
+                >
+                  <source src={project.videoUrl} type="video/mp4" />
+                </video>
+              )}
+
+              {/* Quick Case Study Details link when active */}
+              {isActive && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectProject(project);
+                  }}
+                  className="absolute top-3 right-3 z-30 px-3 py-1 rounded-full text-xs font-medium bg-black/60 hover:bg-black/85 text-white/90 hover:text-white border border-white/20 backdrop-blur-md transition-all flex items-center gap-1.5 shadow-lg cursor-pointer"
+                  title="View Case Study Details"
+                >
+                  <span>Details</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-white/80" />
+                </button>
+              )}
             </motion.div>
           );
         })}

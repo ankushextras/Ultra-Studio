@@ -8,6 +8,7 @@ export interface Project {
   year: string;
   featured: boolean;
   videoUrl: string;
+  embedUrl?: string;
   posterUrl: string;
   accentColor?: string;
   duration: string;

@@ -1,6 +1,6 @@
 {
-  "name": "Aether Motion Studio",
-  "description": "A cinematic, Awwwards-inspired portfolio for a motion graphics & video production agency with 3D rotating case studies and VisionOS glassmorphism UI.",
+  "name": "Ultra Studio",
+  "description": "High-end motion graphics and video editing studio for SaaS and tech startups.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

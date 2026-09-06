@@ -8,6 +8,7 @@ import { FAQSection } from './components/FAQSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { CaseStudyModal } from './components/CaseStudyModal';
+import { SecurityGuard } from './components/SecurityGuard';
 import { PROJECTS_DATA, FAQ_DATA } from './data/portfolioData';
 import { Project, SectionId } from './types';
 
@@ -49,9 +50,12 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-[#030305] text-white selection:bg-white selection:text-black font-sans antialiased overflow-x-hidden">
-      {/* Moving Canvas Gradient Background (Black -> Darkest Navy) */}
+    <div className="relative min-h-screen bg-[#000c0d] text-white selection:bg-white selection:text-black font-sans antialiased overflow-x-hidden">
+      {/* Moving Canvas Gradient Background (Dark -> #000c0d) */}
       <BackgroundCanvas />
+
+      {/* Video & Asset Protection Guard against F12, Ctrl+Shift+I, Right-Click, and Inspection */}
+      <SecurityGuard />
 
       {/* Ultra Studio Floating Glass Navigation */}
       <Navbar
@@ -85,7 +89,7 @@ export default function App() {
       {/* Fullscreen Case Study Popup Modal */}
       <CaseStudyModal
         project={selectedProject}
-        allProjects={PROJECTS_DATA.slice(0, 5)}
+        allProjects={PROJECTS_DATA}
         onClose={() => setSelectedProject(null)}
         onSelectProject={(project) => setSelectedProject(project)}
       />

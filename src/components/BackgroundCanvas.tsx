@@ -28,7 +28,7 @@ export const BackgroundCanvas: React.FC = () => {
       time += 0.003;
       ctx.clearRect(0, 0, width, height);
 
-      // Moving animated linear/radial gradient from pure black to slightly darkest navy blue at bottom
+      // Moving animated linear/radial gradient from deep dark to #000c0d at bottom
       const gradient = ctx.createLinearGradient(
         0,
         0,
@@ -36,9 +36,9 @@ export const BackgroundCanvas: React.FC = () => {
         height
       );
 
-      gradient.addColorStop(0, '#030305'); // Deep pitch black top
-      gradient.addColorStop(0.55, '#05060b'); // Ultra dark transition
-      gradient.addColorStop(1, '#090f20'); // Slightly darkest navy blue from bottom
+      gradient.addColorStop(0, '#000505'); // Deep pitch dark top
+      gradient.addColorStop(0.55, '#000809'); // Ultra dark transition
+      gradient.addColorStop(1, '#000c0d'); // #000c0d background from bottom
 
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, width, height);
@@ -55,9 +55,9 @@ export const BackgroundCanvas: React.FC = () => {
         bottomGlowY,
         Math.max(width, height) * 0.65
       );
-      radialGlow.addColorStop(0, 'rgba(10, 22, 50, 0.45)');
-      radialGlow.addColorStop(0.5, 'rgba(6, 12, 28, 0.2)');
-      radialGlow.addColorStop(1, 'rgba(3, 3, 5, 0)');
+      radialGlow.addColorStop(0, 'rgba(0, 12, 13, 0.7)');
+      radialGlow.addColorStop(0.5, 'rgba(0, 12, 13, 0.35)');
+      radialGlow.addColorStop(1, 'rgba(0, 5, 5, 0)');
 
       ctx.fillStyle = radialGlow;
       ctx.fillRect(0, 0, width, height);

@@ -15,7 +15,7 @@ export const TestimonialsMarquee: React.FC<TestimonialsMarqueeProps> = ({ testim
   return (
     <section className="relative py-28 overflow-hidden z-10 border-y border-white/5">
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[#000c0d] rounded-full blur-[140px] pointer-events-none opacity-80" />
 
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 mb-16 text-center">

@@ -62,16 +62,16 @@ export const CustomCursor: React.FC = () => {
         transition={{ type: 'spring', damping: 30, stiffness: 400, mass: 0.1 }}
       />
 
-      {/* Smooth outer dark navy glass ring */}
+      {/* Smooth outer dark glass ring */}
       <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-[#0d182e]/80 pointer-events-none z-[9998] bg-[#030712]/60 backdrop-blur-[2px]"
+        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-[#000c0d]/80 pointer-events-none z-[9998] bg-[#000c0d]/60 backdrop-blur-[2px]"
         animate={{
           x: position.x - 20,
           y: position.y - 20,
           scale: isHovered ? 1.6 : 1,
-          borderColor: isHovered ? 'rgba(255, 255, 255, 0.4)' : 'rgba(13, 24, 46, 0.9)',
+          borderColor: isHovered ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 12, 13, 0.9)',
           boxShadow: isHovered
-            ? '0 0 25px rgba(255, 255, 255, 0.15), 0 0 15px rgba(5, 10, 25, 0.9)'
+            ? '0 0 25px rgba(255, 255, 255, 0.15), 0 0 15px rgba(0, 12, 13, 0.9)'
             : '0 0 15px rgba(0, 0, 0, 0.8)',
         }}
         transition={{ type: 'spring', damping: 25, stiffness: 250, mass: 0.2 }}

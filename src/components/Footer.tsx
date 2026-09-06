@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Sparkles, Instagram, Twitter, MessageSquare } from 'lucide-react';
+import { ArrowUp, Instagram, Twitter, MessageSquare } from 'lucide-react';
 import { SectionId } from '../types';
 
 interface FooterProps {
@@ -16,16 +16,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-12">
         {/* Brand */}
         <div className="md:col-span-8 space-y-3">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-              <Sparkles className="w-3.5 h-3.5 text-white" />
-            </div>
-            <span className="font-syne font-bold text-white tracking-widest text-base">
+          <div className="flex items-center gap-3">
+            <img
+              src="https://i.ibb.co/tT3Lcbqv/ANKUSH-MOTION-LOGO.png"
+              alt="Ultra Studio Logo"
+              className="w-10 h-10 rounded-full object-cover filter drop-shadow shrink-0"
+              referrerPolicy="no-referrer"
+            />
+            <span className="font-syne font-extrabold text-white tracking-widest text-sm uppercase">
               ULTRA STUDIO
             </span>
           </div>
           <p className="font-light text-slate-400 text-xs max-w-md">
-            High-end motion graphics and video editing studio for SaaS and tech companies.
+            High-end motion graphics and video editing studio for SaaS and tech & startups
           </p>
         </div>
 

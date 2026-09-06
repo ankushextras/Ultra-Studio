@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SectionId } from '../types';
-import { Sparkles, Play, Volume2, VolumeX, Menu, X } from 'lucide-react';
+import { Play, Volume2, VolumeX, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   activeSection: SectionId;
@@ -52,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navItems: { id: SectionId; label: string }[] = [
     { id: 'home', label: 'Home' },
-    { id: 'case-studies', label: 'Reels & Cases' },
+    { id: 'case-studies', label: 'WORK' },
     { id: 'faq', label: 'FAQ' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -84,13 +84,19 @@ export const Navbar: React.FC<NavbarProps> = ({
               {/* Logo / Brand Mark */}
               <button
                 onClick={() => onNavigate('home')}
-                className="relative flex items-center gap-2.5 px-3.5 py-1.5 rounded-full hover:bg-white/10 transition-colors group cursor-pointer"
+                className="relative flex items-center gap-3 px-3 py-1.5 rounded-full hover:bg-white/10 transition-colors group cursor-pointer"
               >
-                <div className="w-7 h-7 rounded-full bg-white/10 border border-white/20 p-0.5 flex items-center justify-center shadow-lg group-hover:bg-white/20 transition-all">
-                  <Sparkles className="w-3.5 h-3.5 text-white animate-pulse" />
-                </div>
+                <img
+                  src="/favicon.png"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = 'https://i.ibb.co/tT3Lcbqv/ANKUSH-MOTION-LOGO.png';
+                  }}
+                  alt="Ultra Studio Icon"
+                  className="w-10 h-10 rounded-full object-cover filter drop-shadow group-hover:scale-105 transition-transform shrink-0"
+                  referrerPolicy="no-referrer"
+                />
                 <span className="font-syne font-extrabold tracking-widest text-xs uppercase text-white">
-                  ULTRA <span className="text-slate-300 font-light">STUDIO</span>
+                  ULTRA STUDIO
                 </span>
               </button>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Project } from '../types';
-import { X, Volume2, VolumeX, ArrowRight } from 'lucide-react';
+import { X, Volume2, VolumeX, ArrowRight, Shield } from 'lucide-react';
 
 interface CaseStudyModalProps {
   project: Project | null;
@@ -42,16 +42,13 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 30 }}
           transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-          className="relative w-full max-w-6xl my-auto bg-[#050508]/95 border border-white/20 rounded-none md:rounded-3xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.9)] z-10 text-white"
+          className="relative w-full max-w-6xl my-auto bg-[#000c0d]/95 border border-white/20 rounded-none md:rounded-3xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.9)] z-10 text-white"
         >
           {/* Close & Sound Buttons Header */}
           <div className="sticky top-0 z-30 flex items-center justify-between p-4 md:p-6 bg-black/60 backdrop-blur-md border-b border-white/10">
             <div className="flex items-center gap-3">
               <span className="px-3 py-1 rounded-full bg-white/10 text-xs font-bold tracking-wider text-white border border-white/20">
                 {project.category}
-              </span>
-              <span className="text-xs text-slate-400 font-mono">
-                CLIENT: {project.client}
               </span>
             </div>
 
@@ -88,18 +85,48 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
           <div className="max-h-[85vh] overflow-y-auto p-6 md:p-10 space-y-10">
             
             {/* HD Video Player Stage */}
-            <div className="relative w-full aspect-video rounded-2xl overflow-hidden glass-card border border-white/15 shadow-2xl">
-              <video
-                autoPlay
-                loop
-                muted={isAudioMuted}
-                playsInline
-                controls
-                poster={project.posterUrl}
-                className="w-full h-full object-cover"
-              >
-                <source src={project.videoUrl} type="video/mp4" />
-              </video>
+            <div
+              onContextMenu={(e) => e.preventDefault()}
+              className="relative w-full aspect-video rounded-2xl overflow-hidden glass-card border border-white/15 shadow-2xl bg-black select-none"
+            >
+              {/* Subtle Protected Stream Badge */}
+              <div className="absolute top-3 right-3 z-30 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] uppercase font-bold tracking-wider text-slate-300">
+                <Shield className="w-3 h-3 text-blue-400" />
+                <span>Protected Ultra Stream</span>
+              </div>
+
+              {project.embedUrl ? (
+                <div style={{ position: 'relative', aspectRatio: '16/9' }} className="w-full h-full">
+                  <iframe
+                    loading="lazy"
+                    title={project.title || 'Gumlet video player'}
+                    src={`${project.embedUrl}?autoplay=true&loop=true`}
+                    style={{
+                      border: 'none',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      height: '100%',
+                      width: '100%',
+                    }}
+                    referrerPolicy="origin"
+                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen; clipboard-write;"
+                  />
+                </div>
+              ) : (
+                <video
+                  autoPlay
+                  loop
+                  muted={isAudioMuted}
+                  playsInline
+                  controls
+                  onContextMenu={(e) => e.preventDefault()}
+                  poster={project.posterUrl}
+                  className="w-full h-full object-cover select-none"
+                >
+                  <source src={project.videoUrl} type="video/mp4" />
+                </video>
+              )}
             </div>
 
             {/* Title & Overview */}
@@ -116,7 +143,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
               {/* Metadata Specs Sidebar */}
               <div className="glass-card p-6 rounded-2xl border border-white/15 space-y-6">
                 <div>
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">
+                  <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
                     Services
                   </h4>
                   <div className="flex flex-wrap gap-1.5 pt-1">
@@ -128,53 +155,23 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
                   </div>
                 </div>
 
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1">
-                    Software Pipeline
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {project.softwareUsed.map((sw, idx) => (
-                      <span key={idx} className="text-xs bg-white/10 border border-white/20 px-2.5 py-1 rounded-md text-white font-mono">
-                        {sw}
-                      </span>
-                    ))}
+                {project.results && project.results.length > 0 && (
+                  <div className="border-t border-white/10 pt-4 space-y-3">
+                    <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400">
+                      Key Outcomes
+                    </h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {project.results.map((r, idx) => (
+                        <div key={idx} className="bg-white/5 border border-white/10 p-2.5 rounded-xl">
+                          <p className="text-sm font-bold text-white font-mono">{r.value}</p>
+                          <p className="text-[10px] text-slate-400 uppercase tracking-wider">{r.label}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-
-                <div className="flex justify-between border-t border-white/10 pt-4 text-xs font-medium">
-                  <span className="text-slate-400">Duration:</span>
-                  <span className="text-white font-mono">{project.duration}</span>
-                </div>
-
-                <div className="flex justify-between border-t border-white/10 pt-4 text-xs font-medium">
-                  <span className="text-slate-400">Year Released:</span>
-                  <span className="text-white font-mono">{project.year}</span>
-                </div>
+                )}
               </div>
             </div>
-
-            {/* Gallery Stills Breakdown */}
-            {project.galleryImages && project.galleryImages.length > 0 && (
-              <div className="space-y-4">
-                <h3 className="font-syne font-bold text-xl text-white">
-                  3D Render Stills & Styleframes
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {project.galleryImages.map((imgUrl, idx) => (
-                    <div
-                      key={idx}
-                      className="rounded-xl overflow-hidden glass-card border border-white/10 aspect-video group"
-                    >
-                      <img
-                        src={imgUrl}
-                        alt={`${project.title} still ${idx + 1}`}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Next Project Footer Button */}
             <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
