@@ -18,13 +18,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="md:col-span-8 space-y-3">
           <div className="flex items-center gap-3">
             <img
-              src="https://i.ibb.co/tT3Lcbqv/ANKUSH-MOTION-LOGO.png"
-              alt="Ultra Studio Logo"
+              src="/favicon.png"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = 'https://i.ibb.co/tT3Lcbqv/ANKUSH-MOTION-LOGO.png';
+              }}
+              alt="ULTRA MOTION Logo"
               className="w-10 h-10 rounded-full object-cover filter drop-shadow shrink-0"
               referrerPolicy="no-referrer"
             />
             <span className="font-syne font-extrabold text-white tracking-widest text-sm uppercase">
-              ULTRA STUDIO
+              ULTRA MOTION
             </span>
           </div>
           <p className="font-light text-slate-400 text-xs max-w-md">
@@ -77,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
       {/* Thin Bottom Line */}
       <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-        <p>© {new Date().getFullYear()} ULTRA STUDIO INC. ALL RIGHTS RESERVED.</p>
+        <p>© {new Date().getFullYear()} ULTRA MOTION INC. ALL RIGHTS RESERVED.</p>
         <div className="flex items-center gap-6">
           <button onClick={() => onNavigate('faq')} className="hover:text-slate-300 transition-colors">
             Privacy Policy

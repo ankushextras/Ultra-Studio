@@ -155,7 +155,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     clientTitle: 'Head of Product Marketing',
     company: 'SaaS Platform Global',
     avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
-    quote: 'Ultra Studio delivered the single most impressive motion graphics launch film in our company’s history. Their SaaS explainer drove a remarkable 142% conversion lift.',
+    quote: 'ULTRA MOTION delivered the single most impressive motion graphics launch film in our company’s history. Their SaaS explainer drove a remarkable 142% conversion lift.',
     rating: 5,
     projectTag: 'After Effects SaaS'
   },
@@ -175,7 +175,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     clientTitle: 'Chief Marketing Officer',
     company: 'Fintech Payments',
     avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80',
-    quote: 'Working with Ultra Studio was effortless. They transformed complex API payment logic into mesmerizing motion graphics that completely elevated our brand prestige.',
+    quote: 'Working with ULTRA MOTION was effortless. They transformed complex API payment logic into mesmerizing motion graphics that completely elevated our brand prestige.',
     rating: 5,
     projectTag: 'Stripe Concept SaaS'
   },

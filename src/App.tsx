@@ -57,7 +57,7 @@ export default function App() {
       {/* Video & Asset Protection Guard against F12, Ctrl+Shift+I, Right-Click, and Inspection */}
       <SecurityGuard />
 
-      {/* Ultra Studio Floating Glass Navigation */}
+      {/* ULTRA MOTION Floating Glass Navigation */}
       <Navbar
         activeSection={activeSection}
         onNavigate={handleNavigate}

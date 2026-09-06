@@ -68,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className="fixed top-5 left-0 right-0 z-50 flex justify-center items-center px-4 pointer-events-none"
           >
-            {/* Apple VisionOS / Ultra Studio Floating Glass Navigation Pill */}
+            {/* Apple VisionOS / ULTRA MOTION Floating Glass Navigation Pill */}
             <div
               onMouseMove={handleMouseMove}
               className="pointer-events-auto relative flex items-center justify-between gap-2 md:gap-6 px-3 py-2 rounded-full glass-nav border border-white/15 shadow-[0_16px_40px_rgba(0,0,0,0.8)] backdrop-blur-2xl transition-all duration-300 hover:border-white/30 hover:shadow-[0_20px_50px_rgba(255,255,255,0.08)] max-w-4xl w-full md:w-auto"
@@ -91,12 +91,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).src = 'https://i.ibb.co/tT3Lcbqv/ANKUSH-MOTION-LOGO.png';
                   }}
-                  alt="Ultra Studio Icon"
+                  alt="ULTRA MOTION Icon"
                   className="w-10 h-10 rounded-full object-cover filter drop-shadow group-hover:scale-105 transition-transform shrink-0"
                   referrerPolicy="no-referrer"
                 />
                 <span className="font-syne font-extrabold tracking-widest text-xs uppercase text-white">
-                  ULTRA STUDIO
+                  ULTRA MOTION
                 </span>
               </button>
 

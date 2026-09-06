@@ -42,11 +42,20 @@ export interface FAQItem {
 
 export interface ContactFormData {
   name: string;
-  email: string;
   company: string;
+  email: string;
+  website: string;
+  country: string;
+  whatsapp?: string;
+  socials?: string;
+  videoType: string;
+  hasScript: string;
+  hasStoryboard: string;
+  videoLength: string;
+  deadlineWeeks: string;
   budget: string;
-  timeline?: string;
-  message: string;
+  moreAboutProject: string;
+  message?: string;
 }
 
 export type SectionId = 'home' | 'projects' | 'case-studies' | 'faq' | 'contact';
