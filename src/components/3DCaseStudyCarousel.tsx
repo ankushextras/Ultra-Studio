@@ -270,7 +270,7 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
       {/* Header — Top Left Corner Garamond */}
       <div className="w-full max-w-[1520px] mx-auto px-6 sm:px-10 lg:px-16 relative z-20 text-left pt-2 pb-6 flex items-center justify-between">
         <h2 className="font-garamond text-4xl sm:text-5xl lg:text-6xl text-white font-normal italic tracking-tight">
-          Selected Work
+          Portfolio
         </h2>
 
         {/* Minimal Subtle Scroll Step Dots Indicator */}
