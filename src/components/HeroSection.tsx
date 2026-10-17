@@ -97,6 +97,34 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, isMuted })
           </button>
         </motion.div>
       </motion.div>
+
+      {/* Non-interactive Scroll Down Indicator */}
+      <motion.div
+        style={{ opacity: textOpacity }}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.8 }}
+        className="absolute bottom-8 sm:bottom-10 left-1/2 -translate-x-1/2 z-20 pointer-events-none select-none flex flex-col items-center gap-2.5"
+        aria-hidden="true"
+      >
+        <span className="text-[10px] sm:text-xs uppercase font-medium tracking-[0.28em] text-white/50 pl-0.5">
+          Scroll Down
+        </span>
+        <div className="relative w-5 h-9 rounded-full border border-white/25 flex items-start justify-center p-1.5 shadow-[0_2px_12px_rgba(0,0,0,0.4)] backdrop-blur-sm">
+          <motion.div
+            animate={{
+              y: [0, 14, 0],
+              opacity: [0.9, 0.25, 0.9],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 2,
+              ease: 'easeInOut',
+            }}
+            className="w-1 h-2 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.7)]"
+          />
+        </div>
+      </motion.div>
     </section>
   );
 };

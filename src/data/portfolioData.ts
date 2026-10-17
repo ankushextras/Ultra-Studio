@@ -27,6 +27,30 @@ export const PROJECTS_DATA: Project[] = [
     ]
   },
   {
+    id: 'elevenlabs-saas-flow-agent',
+    title: 'ElevenLabs SaaS',
+    client: 'ElevenLabs',
+    category: 'SaaS Product Explainer',
+    shortDescription: 'Futuristic motion graphics and kinetic interface design unveiling ElevenLabs’ new Flow Agent conversational AI platform.',
+    fullDescription: 'A flagship SaaS product explainer film highlighting ElevenLabs’ new Flow Agent AI capabilities. Combining high-precision UI animation, dynamic audio-reactive waveforms, and cinematic motion graphics to showcase intelligent voice workflow automation, multi-agent conversational pipelines, and seamless voice synthesis.',
+    year: '2026',
+    featured: true,
+    videoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-screens-41552-large.mp4',
+    embedUrl: 'https://play.gumlet.io/embed/6ad2fc56085713f348b06838',
+    posterUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+    accentColor: '#06B6D4',
+    duration: '01:25',
+    services: ['Motion Graphics', 'SaaS Product Explainer', 'UI Animation', 'Sound Design'],
+    softwareUsed: ['After Effects', 'Premiere Pro', 'Figma', 'Audition'],
+    results: [
+      { label: 'Watch Rate', value: '+78%' },
+      { label: 'Video Retention', value: '92%' }
+    ],
+    galleryImages: [
+      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80'
+    ]
+  },
+  {
     id: 'dropbox-motion-concept',
     title: 'Dropbox Motion Concept',
     client: 'Dropbox',

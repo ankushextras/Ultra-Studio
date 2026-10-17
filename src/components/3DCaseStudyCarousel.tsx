@@ -19,11 +19,11 @@ export const CaseStudyCarousel: React.FC<CaseStudyCarouselProps> = ({
   projects,
   onSelectProject,
 }) => {
-  // 6 case studies for the interactive reel
-  const reelProjects = projects.slice(0, 6);
-  const total = reelProjects.length; // 6 videos (index 0 to 5)
+  // Case studies for the interactive reel
+  const reelProjects = projects;
+  const total = reelProjects.length;
   const SCROLLS_PER_STEP = 3;
-  const TOTAL_SCROLLS = total * SCROLLS_PER_STEP; // 6 * 3 = 18 scrolls total before scrolling to FAQ
+  const TOTAL_SCROLLS = total * SCROLLS_PER_STEP;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
